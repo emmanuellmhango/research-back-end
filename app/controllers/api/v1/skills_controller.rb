@@ -46,6 +46,6 @@ class Api::V1::SkillsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def api_v1_skill_params
-      params.require(:skill).permit(:skill_name, :user_id)
+      params.require(:skill).permit(:skname, :user_id)
     end
 end
