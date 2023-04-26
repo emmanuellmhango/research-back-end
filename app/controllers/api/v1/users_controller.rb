@@ -3,10 +3,17 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /api/v1/users
   def index
-    @api_v1_users = User.all
-
-    render json: @api_v1_users
-  end
+    begin
+      @api_v1_users = User.find_by(email: params[:email], password: params[:password])
+      if @api_v1_users.present?
+        render json: { success: true, user: @api_v1_users }
+      else
+        render json: { success: false }
+      end
+    rescue StandardError => e
+      render json: { code: 201, message: e.message }, status: :unprocessable_entity
+    end
+  end  
 
   # GET /api/v1/users/1
   def show
@@ -18,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
     @api_v1_user = User.new(api_v1_user_params)
 
     if @api_v1_user.save
-      render json: @api_v1_user, status: :created, location: @api_v1_user
+      render json: @api_v1_user, status: :created
     else
       render json: @api_v1_user.errors, status: :unprocessable_entity
     end
@@ -46,6 +53,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def api_v1_user_params
-      params.require(:api_v1_user).permit(:first_name, :last_name, :email, :password, :phone)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :phone)
     end
 end

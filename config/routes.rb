@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users do
         resources :biodata
+        resources :educations
+        resources :experiences
+        resources :skills
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_140624) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_26_124216) do
   create_table "api_v1_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -23,13 +23,43 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_140624) do
 
   create_table "biodata", force: :cascade do |t|
     t.string "address"
-    t.text "education"
-    t.text "experience"
+    t.text "location"
     t.date "date_of_birth"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_biodata_on_user_id"
+  end
+
+  create_table "educations", force: :cascade do |t|
+    t.string "qualification"
+    t.string "university"
+    t.date "date_completed"
+    t.string "location"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_educations_on_user_id"
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.string "position"
+    t.string "company"
+    t.date "date_joined"
+    t.date "date_left"
+    t.string "location"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_experiences_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "skill_name"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,4 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_140624) do
   end
 
   add_foreign_key "biodata", "users"
+  add_foreign_key "educations", "users"
+  add_foreign_key "experiences", "users"
+  add_foreign_key "skills", "users"
 end

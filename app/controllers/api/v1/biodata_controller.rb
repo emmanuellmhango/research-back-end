@@ -18,7 +18,7 @@ class Api::V1::BiodataController < ApplicationController
     @api_v1_biodatum = Biodatum.new(api_v1_biodatum_params)
 
     if @api_v1_biodatum.save
-      render json: @api_v1_biodatum, status: :created, location: @api_v1_biodatum
+      render json: @api_v1_biodatum, status: :created
     else
       render json: @api_v1_biodatum.errors, status: :unprocessable_entity
     end
@@ -43,9 +43,9 @@ class Api::V1::BiodataController < ApplicationController
     def set_api_v1_biodatum
       @api_v1_biodatum = Biodatum.find(params[:id])
     end
-
+    
     # Only allow a list of trusted parameters through.
     def api_v1_biodatum_params
-      params.require(:api_v1_biodatum).permit(:address, :education, :experience, :date_of_birth, :user_id)
+      params.require(:biodatum).permit(:address, :location, :date_of_birth, :user_id)
     end
 end
