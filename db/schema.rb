@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_124216) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_110524) do
   create_table "api_v1_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -29,6 +29,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_124216) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_biodata_on_user_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "website"
+    t.string "password"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "educations", force: :cascade do |t|
@@ -54,6 +65,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_124216) do
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.string "position"
+    t.string "description"
+    t.string "required_education"
+    t.string "needed_skills"
+    t.date "closing_date"
+    t.integer "company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_jobs_on_company_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "profile_position"
+    t.string "profile_text"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "skname"
     t.integer "user_id", null: false
@@ -75,5 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_124216) do
   add_foreign_key "biodata", "users"
   add_foreign_key "educations", "users"
   add_foreign_key "experiences", "users"
+  add_foreign_key "jobs", "companies"
+  add_foreign_key "profiles", "users"
   add_foreign_key "skills", "users"
 end
