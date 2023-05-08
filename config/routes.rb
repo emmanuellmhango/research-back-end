@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         resources :jobs
       end
       resources :jobs
+      resources :applications
       resources :users do
         resources :biodata
         resources :educations
