@@ -4,15 +4,15 @@ Rails.application.routes.draw do
       resources :companies do
         resources :jobs
       end
+      resources :jobapplications
       resources :jobs
-      resources :applications
       resources :users do
         resources :biodata
         resources :educations
         resources :experiences
         resources :skills
         resources :profiles
-        resources :applications
+        resources :jobapplications
       end
     end
   end
