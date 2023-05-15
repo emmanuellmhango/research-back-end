@@ -20,6 +20,23 @@ class Api::V1::JobsController < ApplicationController
     render json: @api_v1_job
   end
 
+  # GET /api/v1/jobs/1/show_applicants
+  def show_applicants
+    @job = Job.find(params[:id])
+    @applicants = @job.jobapplications.includes(:user)
+    @users = @applicants.map(&:user) # Retrieve users from applicants
+
+    render json: { users: @users }
+  end
+
+  # GET /api/v1/jobs/1/show_applicant_count
+  def show_applicant_count
+    @job = Job.find(params[:id])
+    applicants_count = @job.jobapplications.count
+
+    render json: { applicants: applicants_count }
+  end
+
   # POST /api/v1/jobs
   def create
     @api_v1_job = Job.new(api_v1_job_params)

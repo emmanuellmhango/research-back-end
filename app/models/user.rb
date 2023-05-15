@@ -4,5 +4,5 @@ class User < ApplicationRecord
     has_many :experiences
     has_many :skills
     has_one :profiles
-    has_many :applications
+    has_many :jobapplications
 end

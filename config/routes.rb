@@ -5,7 +5,12 @@ Rails.application.routes.draw do
         resources :jobs
       end
       resources :jobapplications
-      resources :jobs
+      resources :jobs do
+        member do
+          get 'show_applicant_count'
+          get 'show_applicants'
+        end
+      end
       resources :users do
         resources :biodata
         resources :educations

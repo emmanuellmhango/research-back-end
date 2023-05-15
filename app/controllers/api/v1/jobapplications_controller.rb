@@ -3,9 +3,9 @@ class Api::V1::JobapplicationsController < ApplicationController
 
   # GET /api/v1/jobapplications
   def index
-    @api_v1_jobapplications = Jobapplication.all
-
-    render json: @api_v1_jobapplications
+    @api_v1_jobapplications = Jobapplication.includes(:job).all
+  
+    render json: @api_v1_jobapplications, include: :job
   end
 
   # GET /api/v1/jobapplications/1
@@ -18,7 +18,7 @@ class Api::V1::JobapplicationsController < ApplicationController
     @api_v1_jobapplication = Jobapplication.new(api_v1_jobapplication_params)
 
     if @api_v1_jobapplication.save
-      render json: @api_v1_jobapplication, status: :created, location: @api_v1_jobapplication
+      render json: @api_v1_jobapplication, status: :created
     else
       render json: @api_v1_jobapplication.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::V1::JobapplicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def api_v1_jobapplication_params
-      params.require(:api_v1_jobapplication).permit(:user_id, :job_id)
+      params.require(:jobapplication).permit(:user_id, :job_id)
     end
 end
