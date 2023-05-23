@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_103339) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_144959) do
   create_table "api_v1_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -96,6 +96,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_103339) do
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
+  create_table "jobscreenings", force: :cascade do |t|
+    t.string "result"
+    t.integer "user_id", null: false
+    t.integer "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_jobscreenings_on_job_id"
+    t.index ["user_id"], name: "index_jobscreenings_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "profile_position"
     t.string "profile_text"
@@ -103,6 +113,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_103339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "save_email_invitations", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "position"
+    t.integer "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "interview_conducted"
+    t.integer "user_id", null: false
+    t.index ["job_id"], name: "index_save_email_invitations_on_job_id"
+    t.index ["user_id"], name: "index_save_email_invitations_on_user_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -131,6 +154,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_103339) do
   add_foreign_key "jobapplications", "jobs"
   add_foreign_key "jobapplications", "users"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "jobscreenings", "jobs"
+  add_foreign_key "jobscreenings", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "save_email_invitations", "jobs"
+  add_foreign_key "save_email_invitations", "users"
   add_foreign_key "skills", "users"
 end

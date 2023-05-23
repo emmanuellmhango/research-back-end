@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :save_email_invitations 
+      post '/send_interview_invitation', to: 'emails#send_email_for_interview'
+      resources :jobscreenings do
+        member do
+          get 'show_applicants_per_job'
+        end
+      end
       resources :companies do
         resources :jobs
       end

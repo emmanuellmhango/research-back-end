@@ -23,11 +23,17 @@ class Api::V1::JobsController < ApplicationController
   # GET /api/v1/jobs/1/show_applicants
   def show_applicants
     @job = Job.find(params[:id])
-    @applicants = @job.jobapplications.includes(:user)
-    @users = @applicants.map(&:user) # Retrieve users from applicants
-
-    render json: { users: @users }
+    @applicants = @job.jobapplications.includes(user: :skills)
+    @users = @applicants.map(&:user)
+  
+    users_with_skills = @users.map do |user|
+      skills = user.skills.map(&:skname).join(", ")
+      { id: user.id, name: "#{user.first_name} #{user.last_name}", email: user.email, phone: user.phone, skills: skills }
+    end
+  
+    render json: { users: users_with_skills }
   end
+  
 
   # GET /api/v1/jobs/1/show_applicant_count
   def show_applicant_count
