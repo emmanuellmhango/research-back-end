@@ -3,10 +3,17 @@ class Api::V1::SaveEmailInvitationsController < ApplicationController
 
   # GET /api/v1/save_email_invitations
   def index
-    @api_v1_save_email_invitations = SaveEmailInvitation.all
-
-    render json: @api_v1_save_email_invitations
-  end
+    begin
+      @api_v1_save_email_invitations = SaveEmailInvitation.all
+      if @api_v1_save_email_invitations.present?
+        render json: { success: true, invitations: @api_v1_save_email_invitations }
+      else
+        render json: { success: false }
+      end
+    rescue StandardError => e
+      render json: { code: 201, message: e.message }, status: :unprocessable_entity
+    end
+  end  
 
   # GET /api/v1/save_email_invitations/1
   def show
