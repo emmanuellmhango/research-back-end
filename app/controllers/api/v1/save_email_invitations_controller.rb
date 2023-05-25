@@ -4,7 +4,7 @@ class Api::V1::SaveEmailInvitationsController < ApplicationController
   # GET /api/v1/save_email_invitations
   def index
     begin
-      @api_v1_save_email_invitations = SaveEmailInvitation.all
+      @api_v1_save_email_invitations = SaveEmailInvitation.where(job_id: params[:job_id])
       if @api_v1_save_email_invitations.present?
         render json: { success: true, invitations: @api_v1_save_email_invitations }
       else

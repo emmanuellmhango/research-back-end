@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :save_expressions
       resources :save_questions
       resources :save_email_invitations 
       post '/send_interview_invitation', to: 'emails#send_email_for_interview'

@@ -4,8 +4,8 @@ class Api::V1::SaveQuestionsController < ApplicationController
   # GET /api/v1/save_questions
   def index
     @api_v1_save_questions = SaveQuestion.where(job_id: params[:job_id])
-
-    render json: @api_v1_save_questions
+    success = @api_v1_save_questions.present?
+    render json: { success: success, save_questions: @api_v1_save_questions }
   end
 
   # GET /api/v1/save_questions/1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_094501) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_130522) do
   create_table "api_v1_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -128,6 +128,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_094501) do
     t.index ["user_id"], name: "index_save_email_invitations_on_user_id"
   end
 
+  create_table "save_expressions", force: :cascade do |t|
+    t.string "expressions"
+    t.integer "user_id", null: false
+    t.integer "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_save_expressions_on_job_id"
+    t.index ["user_id"], name: "index_save_expressions_on_user_id"
+  end
+
   create_table "save_questions", force: :cascade do |t|
     t.string "question"
     t.string "answer"
@@ -168,6 +178,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_094501) do
   add_foreign_key "profiles", "users"
   add_foreign_key "save_email_invitations", "jobs"
   add_foreign_key "save_email_invitations", "users"
+  add_foreign_key "save_expressions", "jobs"
+  add_foreign_key "save_expressions", "users"
   add_foreign_key "save_questions", "jobs"
   add_foreign_key "skills", "users"
 end
