@@ -46,6 +46,6 @@ class Api::V1::SaveExpressionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def api_v1_save_expression_params
-      params.require(:save_expression).permit(:expressions, :user_id, :job_id)
+      params.require(:save_expression).permit(:expressions, :user_id, :job_id, :video_feed => {})
     end
 end

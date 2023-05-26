@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_130522) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_26_130027) do
   create_table "api_v1_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -19,15 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_130522) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "applications", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "job_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_applications_on_job_id"
-    t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
   create_table "biodata", force: :cascade do |t|
@@ -130,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_130522) do
 
   create_table "save_expressions", force: :cascade do |t|
     t.string "expressions"
+    t.binary "video_feed"
     t.integer "user_id", null: false
     t.integer "job_id", null: false
     t.datetime "created_at", null: false
@@ -165,8 +157,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_130522) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "applications", "jobs"
-  add_foreign_key "applications", "users"
   add_foreign_key "biodata", "users"
   add_foreign_key "educations", "users"
   add_foreign_key "experiences", "users"
