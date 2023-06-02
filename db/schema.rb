@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_130027) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_101907) do
   create_table "api_v1_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -126,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_130027) do
     t.integer "job_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "voice_text"
     t.index ["job_id"], name: "index_save_expressions_on_job_id"
     t.index ["user_id"], name: "index_save_expressions_on_user_id"
   end

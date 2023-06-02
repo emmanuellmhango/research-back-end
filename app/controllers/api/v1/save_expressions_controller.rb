@@ -3,9 +3,16 @@ class Api::V1::SaveExpressionsController < ApplicationController
 
   # GET /api/v1/save_expressions
   def index
-    @api_v1_save_expressions = SaveExpression.where(job_id: params[:job_id], user_id: params[:user_id])
+    @api_v1_save_expressions = SaveExpression.where(job_id: params[:job_id])
     success = @api_v1_save_expressions.present?
-    render json: {success: success, expressions: @api_v1_save_expressions}
+    render json: {success: success, job_results: @api_v1_save_expressions}
+  end
+
+  # GET /api/v1/save_expressions for job id
+  def get_expressions_for_job
+    @api_v1_save_expressions = SaveExpression.where(job_id: params[:job_id])
+    success = @api_v1_save_expressions.present?
+    render json: {success: success, job_results: @api_v1_save_expressions}
   end
 
   # GET /api/v1/save_expressions/1
@@ -46,6 +53,6 @@ class Api::V1::SaveExpressionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def api_v1_save_expression_params
-      params.require(:save_expression).permit(:expressions, :user_id, :job_id, :video_feed => {})
+      params.require(:save_expression).permit(:expressions, :user_id, :job_id, :voice_text, :video_feed)
     end
 end
