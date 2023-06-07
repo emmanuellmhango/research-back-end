@@ -36,7 +36,7 @@
 <details>
   <summary>FRONT END</summary>
   <ul>
-    <li><a href="https://github.com/emmanuellmhango/research-front-end">BACK END</a></li>
+    <li><a href="https://github.com/emmanuellmhango/research-front-end">FRONT END Repo</a></li>
   </ul>
 </details>
 <details>
