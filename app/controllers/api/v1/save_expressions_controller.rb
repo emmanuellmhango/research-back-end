@@ -24,7 +24,7 @@ class Api::V1::SaveExpressionsController < ApplicationController
     @api_v1_save_expression = SaveExpression.new(api_v1_save_expression_params)
 
     if @api_v1_save_expression.save
-      render json: @api_v1_save_expression, status: :created, location: @api_v1_save_expression
+      render json: @api_v1_save_expression, status: :created
     else
       render json: @api_v1_save_expression.errors, status: :unprocessable_entity
     end
@@ -52,6 +52,7 @@ class Api::V1::SaveExpressionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def api_v1_save_expression_params
-      params.require(:save_expression).permit(:expressions, :voice_text, :video_feed, :user_id, :job_id, :save_question_id)
+      params.require(:save_expression).permit(:expressions, :voice_text, :user_id, :job_id, :save_question_id, :video_feed => {})
     end
+    
 end
