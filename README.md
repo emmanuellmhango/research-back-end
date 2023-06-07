@@ -1,4 +1,6 @@
-# 📗 Table of Contents
+# 📖 [EMPLOYEE HIRING AND RECRUITEMENT APP] <a name="about-project"></a>
+
+## 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
@@ -18,8 +20,6 @@
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
-
-# 📖 [EMPLOYEE HIRING AND RECRUITEMENT APP] <a name="about-project"></a>
 
 **[EMPLOYEE HIRING AND RECRUITEMENT APP]** is a back-end API that tries to automate the employee hiring process. It handles requests from the front-end and saves the data into the SQLLITE database. this is in fulfillment of my Master of Computer Science research requirement. Please see the full [ABSTRACT HERE](https://emma-code.blogspot.com/p/research-abstract.html) to understand the research better. You can see the front-end repository [HERE](https://github.com/emmanuellmhango/research-front-end)
 
