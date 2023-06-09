@@ -1,0 +1,36 @@
+<div style="background-color: #f4f4f4; padding: 20px;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td bgcolor="#f4f4f4" style="padding: 20px;">
+        <h1 style="color: #333333;">Greetings <%= @name %> </h1>
+        <p style="color: #666666;">
+          After reviewing your application for the position of <b> <%= @position %> </b>, We would like to invite you for an online based oral interview to the same 
+          position. You can can do the interview whenever ready through the link below:
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#f4f4f4"  style="padding: 20px;">
+        <p style="color: #666666;"><a href="http://localhost:3001/interview">http://localhost:3001/interview</a></p>
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#f4f4f4"  style="padding: 20px;">
+        <p style="color: #666666;">
+          We hereby request that you prepare to have access to an internet connection, a laptop/tablet/smart phone with a functional web 
+          camera ahead of these interviews since we shall conduct the session through an online platform.     
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td bgcolor="#f4f4f4" style="padding: 20px;">
+        <p style="color: #666666;">If you have any questions, feel free to contact us.</p>
+        <p style="color: #666666;">Best regards,</p>
+        <p style="color: #666666;"> <%= @company %> </p>
+      </td>
+    </tr>
+  </table>
+ </div>

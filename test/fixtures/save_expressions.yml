@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  expressions: MyString
+  voice_text: MyString
+  video_feed: 
+  user: one
+  job: one
+  save_question: one
+
+two:
+  expressions: MyString
+  voice_text: MyString
+  video_feed: 
+  user: two
+  job: two
+  save_question: two
