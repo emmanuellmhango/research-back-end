@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :save_email_invitations 
       post '/send_interview_invitation', to: 'emails#send_email_for_interview'
       get '/users_interview', to: 'users#interview_index'
+      get '/get_images', to: 'users#get_user_images'
       resources :jobscreenings do
         member do
           get 'show_applicants_per_job'

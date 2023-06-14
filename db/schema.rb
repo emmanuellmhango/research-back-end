@@ -156,6 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_112724) do
     t.string "email"
     t.string "password"
     t.string "phone"
+    t.string "image_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
